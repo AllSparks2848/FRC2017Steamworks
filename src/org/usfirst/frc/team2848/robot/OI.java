@@ -123,7 +123,7 @@ public class OI {
 		
 		a1.whileHeld(new Climb(.5)); 
 		x1.whileHeld(new SetBottomPos());
-		y1.whileHeld(new ManualShoot(-.675, .7));
+		//y1.whileHeld(new ManualShoot(-.675, .7));
 		b1.whenPressed(new ZeroIntake());
 		
 		rTrig1.whenPressed(new NoOmnis());
@@ -174,4 +174,16 @@ public class OI {
 	public double getRightJoystick() {
 		return xbox1.getRawAxis(4);
 	}
+	
+	public double getThrottle() {
+		return xbox1.getRawAxis(1);
+	    }
+
+	public double getTurn() {
+		return xbox1.getRawAxis(4);
+	    }
+
+	public boolean getQuickTurn() {
+	        return y1.get();
+	    }
 }

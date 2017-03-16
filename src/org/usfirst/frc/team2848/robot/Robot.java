@@ -50,6 +50,7 @@ public class Robot extends IterativeRobot {
 	public static Conveyor conveyor = new Conveyor();
 	public static Climber climber = new Climber();
 	public static VisionTable visiontable = new VisionTable();
+	public static QuesoDriveHelper mCheesyDriveHelper = new QuesoDriveHelper();
 	
 	public static Logger logger;
 	public static VisionServer visionServer;
@@ -133,8 +134,12 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		if(Math.abs(oi.getLeftJoystick())>.05 || Math.abs(oi.getRightJoystick())>.05)
+		 double throttle = oi.getThrottle();
+         double turn = oi.getTurn();
+		/*if(Math.abs(oi.getLeftJoystick())>.05 || Math.abs(oi.getRightJoystick())>.05)
 			drivetrain.arcadeDrive(oi.getLeftJoystick(), oi.getRightJoystick());
+			*/
+         drivetrain.arcadeDrive(mCheesyDriveHelper.cheesyDrive(throttle, turn, oi.getQuickTurn()).leftMotor,mCheesyDriveHelper.cheesyDrive(throttle, turn, oi.getQuickTurn()).rightMotor);
 		
 		
 //		SmartDashboard.putBoolean("Photogate", intake.isPhotoGateBroken());
